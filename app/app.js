@@ -1,3 +1,4 @@
+require("./todoApp.css");
 import store from './store';
 import { addTodo, toggleTodo, removeTodo } from './actions'
 
