@@ -1,6 +1,13 @@
 require("./todoApp.css");
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+
 import store from './store';
+import TodoList from './components/TodoList';
 import { addTodo, toggleTodo, removeTodo } from './actions'
+
+ReactDOM.render(<TodoList />, document.getElementById('todo-app'));
 
 // Log the initial state
 console.log(store.getState())
