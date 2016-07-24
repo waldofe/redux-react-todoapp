@@ -1,20 +1,21 @@
-export const addTodo = (text) => {
+export const addTodo = (text, id) => {
   return {
     type: 'ADD_TODO',
-    text
+    text,
+    id
   }
 }
 
-export const removeTodo = (index) => {
+export const removeTodo = (id) => {
   return {
     type: 'REMOVE_TODO',
-    index
+    id
   }
 }
 
-export const toggleTodo = (index) => {
+export const toggleTodo = (id) => {
   return {
     type: 'TOGGLE_TODO',
-    index
+    id
   }
 }

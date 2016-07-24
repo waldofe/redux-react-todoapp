@@ -8,7 +8,8 @@ describe('todoApp', () => {
         todos: [
           {
             text: 'Go to mars',
-            completed: false
+            completed: false,
+            id: 1
           }
         ]
       }
@@ -27,12 +28,13 @@ describe('todoApp', () => {
         todos: [
           {
             text: 'Go to mars',
-            completed: false
+            completed: false,
+            id: 1
           }
         ]
       }
 
-      expect(todoApp(initialState, { type: 'ADD_TODO', text: 'Go to mars' })).to.eql(afterState)
+      expect(todoApp(initialState, { type: 'ADD_TODO', text: 'Go to mars', id: 1 })).to.eql(afterState)
     });
   });
 
@@ -42,11 +44,13 @@ describe('todoApp', () => {
         todos: [
           {
             text: 'Go to mars',
-            completed: false
+            completed: false,
+            id: 1
           },
           {
             text: 'Go to jupiter',
-            completed: false
+            completed: false,
+            id: 2
           }
         ]
       }
@@ -55,16 +59,18 @@ describe('todoApp', () => {
         todos: [
           {
             text: 'Go to mars',
-            completed: true
+            completed: true,
+            id: 1
           },
           {
             text: 'Go to jupiter',
-            completed: false
+            completed: false,
+            id: 2
           }
         ]
       }
 
-      expect(todoApp(initialState, { type: 'TOGGLE_TODO', index: 0 })).to.eql(afterState)
+      expect(todoApp(initialState, { type: 'TOGGLE_TODO', id: 1 })).to.eql(afterState)
     });
   });
 
@@ -74,15 +80,18 @@ describe('todoApp', () => {
         todos: [
           {
             text: 'Go to mars',
-            completed: false
+            completed: false,
+            id: 1
           },
           {
             text: 'Go to jupiter',
-            completed: false
+            completed: false,
+            id: 2
           },
           {
             text: 'Go to earth',
-            completed: false
+            completed: false,
+            id: 3
           }
         ]
       }
@@ -91,16 +100,18 @@ describe('todoApp', () => {
         todos: [
           {
             text: 'Go to mars',
-            completed: false
+            completed: false,
+            id: 1
           },
           {
             text: 'Go to earth',
-            completed: false
+            completed: false,
+            id: 3
           }
         ]
       }
 
-      expect(todoApp(initialState, { type: 'REMOVE_TODO', index: 1 })).to.eql(afterState)
+      expect(todoApp(initialState, { type: 'REMOVE_TODO', id: 2 })).to.eql(afterState)
     });
   });
 });

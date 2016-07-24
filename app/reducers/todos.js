@@ -5,21 +5,20 @@ const todos = (state = [], action) => {
         ...state,
         {
           text: action.text,
-          completed: false
+          completed: false,
+          id: action.id
         }
       ]
     case 'TOGGLE_TODO':
-      return state.map((todo, index) => {
-        if (index === action.index) {
+      return state.map((todo) => {
+        if (todo.id === action.id) {
           return Object.assign({}, todo, { completed: !todo.completed })
         }
 
         return todo;
       });
     case 'REMOVE_TODO':
-      return state
-        .slice(0, action.index)
-        .concat(state.slice(action.index + 1))
+      return state.filter((todo) => todo.id !== action.id)
     default:
       return state;
   }
