@@ -1,33 +1,31 @@
 import React from 'react';
+import Todo from './todo';
+import { addTodo } from '../actions';
 
-const TodoList = () => {
+const TodoList = ({previousTodoId, store, todos}) => {
+	const renderTodos = () => {
+		return todos.map((todo) => <Todo store={store} todo={todo} />);
+	}
+
+	const dispatchAddTodo = (event) => {
+		if (event.key === 'Enter') {
+			store.dispatch(addTodo(event.target.value, previousTodoId++));
+			event.target.value = '';
+		}
+	}
+
   return (
 		<section className="todoapp">
 			<header className="header">
 				<h1>todos</h1>
-				<input className="new-todo" placeholder="What needs to be done?"></input>
+				<input onKeyPress={dispatchAddTodo} className="new-todo" placeholder="What needs to be done?"></input>
 			</header>
 
 			<section className="main">
 				<input className="toggle-all" type="checkbox" />
 				<label htmlFor="toggle-all">Mark all as complete</label>
 				<ul className="todo-list">
-					<li className="completed">
-						<div className="view">
-							<input className="toggle" type="checkbox" />
-							<label>Taste JavaScript</label>
-							<button className="destroy"></button>
-						</div>
-						<input className="edit" value="Create a TodoMVC template" />
-					</li>
-					<li>
-						<div className="view">
-							<input className="toggle" type="checkbox" />
-							<label>Buy a unicorn</label>
-							<button className="destroy"></button>
-						</div>
-						<input className="edit" value="Rule the web" />
-					</li>
+					{renderTodos()}
 				</ul>
 			</section>
 
