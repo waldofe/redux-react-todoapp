@@ -114,4 +114,42 @@ describe('todoApp', () => {
       expect(todoApp(initialState, { type: 'REMOVE_TODO', id: 2 })).to.eql(afterState)
     });
   });
+
+  describe('when TOGGLE_TODO action', function () {
+    describe('when CLEAR_COMPLETED_TODOS', function () {
+      it('clears completed todos', function () {
+        let initialState = {
+          todos: [
+            {
+              text: 'Go to mars',
+              completed: false,
+              id: 1
+            },
+            {
+              text: 'Go to jupiter',
+              completed: true,
+              id: 2
+            },
+            {
+              text: 'Go to earth',
+              completed: true,
+              id: 3
+            }
+          ]
+        }
+
+        let afterState = {
+          todos: [
+            {
+              text: 'Go to mars',
+              completed: false,
+              id: 1
+            }
+          ]
+        }
+
+        expect(todoApp(initialState, { type: 'CLEAR_COMPLETED_TODOS', completedTodoIds: [2, 3] })).to.eql(afterState)
+      });
+    });
+  });
 });

@@ -1,7 +1,5 @@
 import { expect } from 'chai';
-import { removeTodo } from '../app/actions';
-import { addTodo } from '../app/actions';
-import { toggleTodo } from '../app/actions';
+import { removeTodo, addTodo, toggleTodo, clearCompletedTodos } from '../app/actions';
 
 describe('addTodo', () => {
   it('returns addTodo action', () => {
@@ -21,5 +19,12 @@ describe('toggleTodo', () => {
   it('returns toggleTodo action', () => {
     let action = toggleTodo(5);
     expect(action).to.eql({ type: 'TOGGLE_TODO', id: 5 });
+  });
+});
+
+describe('clearCompletedTodos', () => {
+  it('returns clearCompletedTodos action', () => {
+    let action = clearCompletedTodos([1, 5]);
+    expect(action).to.eql({ type: 'CLEAR_COMPLETED_TODOS', completedTodoIds: [1, 5] });
   });
 });

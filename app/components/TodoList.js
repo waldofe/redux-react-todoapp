@@ -1,14 +1,26 @@
 import React from 'react';
 import Todo from './todo';
-import { addTodo } from '../actions';
+import { addTodo, clearCompletedTodos } from '../actions';
 
 const TodoList = ({store, todos}) => {
 	const renderTodos = () => {
 		return todos.map((todo) => <Todo store={store} todo={todo} />);
 	}
 
-	const countTodoLeft = () => {
+	const completedTodos = () => {
+		return todos.filter((todo) => todo.completed === true)
+	}
+
+	const countTodosLeft = () => {
 		return todos.filter((todo) => todo.completed === false).length;
+	}
+
+	const clearCompletedButton = () => {
+		if (completedTodos().length > 0) {
+			return (
+				<button onClick={dispatchClearCompleted} className="clear-completed">Clear completed</button>
+			)
+		}
 	}
 
 	const dispatchAddTodo = (event) => {
@@ -16,6 +28,12 @@ const TodoList = ({store, todos}) => {
 			store.dispatch(addTodo(event.target.value, globalTodoId++));
 			event.target.value = '';
 		}
+	}
+
+	const dispatchClearCompleted = () => {
+		store.dispatch(
+			clearCompletedTodos(completedTodos().map((item) => item.id))
+		)
 	}
 
   return (
@@ -34,8 +52,8 @@ const TodoList = ({store, todos}) => {
 			</section>
 
 			<footer className="footer">
-				<span className="todo-count"><strong>{countTodoLeft()}</strong> item left</span>
-				<button className="clear-completed">Clear completed</button>
+				<span className="todo-count"><strong>{countTodosLeft()}</strong> item left</span>
+				{clearCompletedButton()}
 			</footer>
 		</section>
   )

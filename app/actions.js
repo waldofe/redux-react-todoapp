@@ -19,3 +19,10 @@ export const toggleTodo = (id) => {
     id
   }
 }
+
+export const clearCompletedTodos = (completedTodoIds) => {
+  return {
+    type: 'CLEAR_COMPLETED_TODOS',
+    completedTodoIds
+  }
+}
