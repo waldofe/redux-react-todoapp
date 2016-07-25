@@ -36,25 +36,34 @@ const TodoList = ({store, todos}) => {
 		)
 	}
 
+	const renderMain = () => {
+		if (todos.length > 0) {
+			return (
+				<div>
+					<section className="main">
+						<input className="toggle-all" type="checkbox" />
+						<label htmlFor="toggle-all">Mark all as complete</label>
+						<ul className="todo-list">
+							{renderTodos()}
+						</ul>
+					</section>
+
+					<footer className="footer">
+						<span className="todo-count"><strong>{countTodosLeft()}</strong> item left</span>
+						{clearCompletedButton()}
+					</footer>
+				</div>
+			)
+		}
+	}
+
   return (
 		<section className="todoapp">
 			<header className="header">
 				<h1>todos</h1>
 				<input onKeyPress={dispatchAddTodo} className="new-todo" placeholder="What needs to be done?"></input>
 			</header>
-
-			<section className="main">
-				<input className="toggle-all" type="checkbox" />
-				<label htmlFor="toggle-all">Mark all as complete</label>
-				<ul className="todo-list">
-					{renderTodos()}
-				</ul>
-			</section>
-
-			<footer className="footer">
-				<span className="todo-count"><strong>{countTodosLeft()}</strong> item left</span>
-				{clearCompletedButton()}
-			</footer>
+			{renderMain()}
 		</section>
   )
 }
