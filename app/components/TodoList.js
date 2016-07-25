@@ -24,7 +24,7 @@ const TodoList = ({store, todos}) => {
 	}
 
 	const dispatchAddTodo = (event) => {
-		if (event.key === 'Enter') {
+		if (event.key === 'Enter' && event.target.value !== '') {
 			store.dispatch(addTodo(event.target.value, globalTodoId++));
 			event.target.value = '';
 		}
