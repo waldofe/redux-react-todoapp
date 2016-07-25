@@ -7,6 +7,10 @@ const TodoList = ({previousTodoId, store, todos}) => {
 		return todos.map((todo) => <Todo store={store} todo={todo} />);
 	}
 
+	const countTodoLeft = () => {
+		return todos.filter((todo) => todo.completed === false).length;
+	}
+
 	const dispatchAddTodo = (event) => {
 		if (event.key === 'Enter') {
 			store.dispatch(addTodo(event.target.value, previousTodoId++));
@@ -30,7 +34,7 @@ const TodoList = ({previousTodoId, store, todos}) => {
 			</section>
 
 			<footer className="footer">
-				<span className="todo-count"><strong>0</strong> item left</span>
+				<span className="todo-count"><strong>{countTodoLeft()}</strong> item left</span>
 				<button className="clear-completed">Clear completed</button>
 			</footer>
 		</section>
