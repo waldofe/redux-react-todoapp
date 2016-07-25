@@ -7,10 +7,12 @@ import store from './store';
 import TodoList from './components/TodoList';
 import { addTodo, toggleTodo, removeTodo } from './actions'
 
+// Avoiding a DB usage early-on.
+window.globalTodoId = 0;
+
 const render = () => {
   ReactDOM.render(
     <TodoList
-      previousTodoId={store.getState().todos.length}
       store={store}
       todos={store.getState().todos}
     />,
@@ -20,5 +22,3 @@ const render = () => {
 
 store.subscribe(() => render());
 render()
-
-store.dispatch(addTodo('Buy a unicorn', 0));

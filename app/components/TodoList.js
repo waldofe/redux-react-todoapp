@@ -2,7 +2,7 @@ import React from 'react';
 import Todo from './todo';
 import { addTodo } from '../actions';
 
-const TodoList = ({previousTodoId, store, todos}) => {
+const TodoList = ({store, todos}) => {
 	const renderTodos = () => {
 		return todos.map((todo) => <Todo store={store} todo={todo} />);
 	}
@@ -13,7 +13,7 @@ const TodoList = ({previousTodoId, store, todos}) => {
 
 	const dispatchAddTodo = (event) => {
 		if (event.key === 'Enter') {
-			store.dispatch(addTodo(event.target.value, previousTodoId++));
+			store.dispatch(addTodo(event.target.value, globalTodoId++));
 			event.target.value = '';
 		}
 	}
