@@ -1,6 +1,7 @@
 import { connect } from 'react-redux'
 import { toggleTodo, addTodo, removeTodo } from '../actions'
 import TodoList from '../components/TodoList'
+import Footer from '../components/Footer'
 
 const getVisibleTodos = (todos, filter) => {
   switch (filter) {

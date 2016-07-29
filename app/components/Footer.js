@@ -1,8 +1,11 @@
 import React from 'react'
 import FilterLink from '../containers/FilterLink'
 
-const Footer = () => (
+const Footer = ({todosLeftCount}) => (
+
   <footer className="footer">
+    <span className="todo-count">{todosLeftCount}<strong></strong> item left</span>
+
     <ul className="filters">
       <li>
         <FilterLink filter="SHOW_ALL">All</FilterLink>

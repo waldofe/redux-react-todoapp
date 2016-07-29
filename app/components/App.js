@@ -1,12 +1,12 @@
 import React from 'react'
-import Footer from './Footer'
 import VisibleTodoList from '../containers/VisibleTodoList'
+import FooterWithAction from '../containers/FooterWithAction'
 
 const App = () => (
   <div>
 		<section className="todoapp">
       <VisibleTodoList />
-      <Footer />
+      <FooterWithAction />
     </section>
   </div>
 )
