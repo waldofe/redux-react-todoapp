@@ -1,31 +1,31 @@
 import React from 'react';
 import { toggleTodo, removeTodo } from '../actions';
+import { PropTypes } from 'react'
 
-const Todo = ({store, todo}) => {
+const Todo = ({ onToggle, onDestroy, completed, text }) => {
 	const completedClassName = () => {
-		if (todo.completed) {
+		if (completed) {
 			return "completed"
 		}
-	}
-
-	const dispatchToggleTodo = () => {
-		store.dispatch(toggleTodo(todo.id));
-	}
-
-	const dispatchRemoveTodo = () => {
-		store.dispatch(removeTodo(todo.id));
 	}
 
   return (
 		<li className={completedClassName()}>
 			<div className="view">
-				<input className="toggle" type="checkbox" onClick={dispatchToggleTodo} checked={todo.completed} />
-				<label>{todo.text}</label>
-				<button className="destroy" onClick={dispatchRemoveTodo}></button>
+				<input onClick={onToggle} checked={completed} className="toggle" type="checkbox" />
+				<label>{text}</label>
+				<button onClick={onDestroy} className="destroy"></button>
 			</div>
 			<input className="edit" value="Create a TodoMVC template" />
 		</li>
   )
 }
 
-export default Todo;
+Todo.propTypes = {
+  onToggle: PropTypes.func.isRequired,
+  onDestroy: PropTypes.func.isRequired,
+  completed: PropTypes.bool.isRequired,
+  text: PropTypes.string.isRequired
+}
+
+export default Todo

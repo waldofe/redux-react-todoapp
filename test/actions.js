@@ -1,5 +1,12 @@
 import { expect } from 'chai';
-import { removeTodo, addTodo, toggleTodo, clearCompletedTodos } from '../app/actions';
+
+import {
+  removeTodo,
+  addTodo,
+  toggleTodo,
+  clearCompletedTodos,
+  setVisibilityFilter
+} from '../app/actions';
 
 describe('addTodo', () => {
   it('returns addTodo action', () => {
@@ -26,5 +33,12 @@ describe('clearCompletedTodos', () => {
   it('returns clearCompletedTodos action', () => {
     let action = clearCompletedTodos([1, 5]);
     expect(action).to.eql({ type: 'CLEAR_COMPLETED_TODOS', completedTodoIds: [1, 5] });
+  });
+});
+
+describe('setVisibilityFilter', () => {
+  it('returns setVisibilityFilter action', () => {
+    let action = setVisibilityFilter('SHOW_ALL');
+    expect(action).to.eql({ type: 'SET_VISIBILITY_FILTER', filter: 'SHOW_ALL' });
   });
 });

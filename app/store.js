@@ -1,7 +1,7 @@
 import { createStore } from 'redux'
-import todoApp from './todoApp'
+import mainReducer from './reducers/mainReducer'
 
-let store = createStore(todoApp)
+let store = createStore(mainReducer);
 
 export default store;
 

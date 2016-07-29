@@ -1,39 +1,18 @@
 import React from 'react';
 import Todo from './todo';
 import { addTodo, clearCompletedTodos } from '../actions';
+import { PropTypes } from 'react'
 
-const TodoList = ({store, todos}) => {
+const TodoList = ({ todos, onTodoClick, onTodoDestroy, onKeyPress }) => {
 	const renderTodos = () => {
-		return todos.map((todo) => <Todo store={store} todo={todo} />);
-	}
-
-	const completedTodos = () => {
-		return todos.filter((todo) => todo.completed === true)
-	}
-
-	const countTodosLeft = () => {
-		return todos.filter((todo) => todo.completed === false).length;
-	}
-
-	const clearCompletedButton = () => {
-		if (completedTodos().length > 0) {
-			return (
-				<button onClick={dispatchClearCompleted} className="clear-completed">Clear completed</button>
-			)
-		}
-	}
-
-	const dispatchAddTodo = (event) => {
-		if (event.key === 'Enter' && event.target.value !== '') {
-			store.dispatch(addTodo(event.target.value, globalTodoId++));
-			event.target.value = '';
-		}
-	}
-
-	const dispatchClearCompleted = () => {
-		store.dispatch(
-			clearCompletedTodos(completedTodos().map((item) => item.id))
-		)
+		return todos.map((todo) =>
+			<Todo
+				onToggle={() => onTodoClick(todo.id)}
+				onDestroy={() => onTodoDestroy(todo.id)}
+				completed={todo.completed}
+				text={todo.text}>
+			</Todo>
+		);
 	}
 
 	const renderMain = () => {
@@ -47,25 +26,31 @@ const TodoList = ({store, todos}) => {
 							{renderTodos()}
 						</ul>
 					</section>
-
-					<footer className="footer">
-						<span className="todo-count"><strong>{countTodosLeft()}</strong> item left</span>
-						{clearCompletedButton()}
-					</footer>
 				</div>
 			)
 		}
 	}
 
   return (
-		<section className="todoapp">
+		<div>
 			<header className="header">
 				<h1>todos</h1>
-				<input onKeyPress={dispatchAddTodo} className="new-todo" placeholder="What needs to be done?"></input>
+				<input onKeyPress={(event) => onKeyPress(event)} className="new-todo" placeholder="What needs to be done?" />
 			</header>
+
 			{renderMain()}
-		</section>
+		</div>
   )
+}
+
+TodoList.propTypes = {
+  todos: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    completed: PropTypes.bool.isRequired,
+    text: PropTypes.string.isRequired
+  }).isRequired).isRequired,
+  onTodoClick: PropTypes.func.isRequired,
+  onKeyPress: PropTypes.func.isRequired
 }
 
 export default TodoList;

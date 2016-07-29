@@ -26,3 +26,10 @@ export const clearCompletedTodos = (completedTodoIds) => {
     completedTodoIds
   }
 }
+
+export const setVisibilityFilter = (filter) => {
+  return {
+    type: 'SET_VISIBILITY_FILTER',
+    filter
+  }
+}
