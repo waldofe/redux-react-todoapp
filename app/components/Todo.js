@@ -16,7 +16,6 @@ const Todo = ({ onToggle, onDestroy, completed, text }) => {
 				<label>{text}</label>
 				<button onClick={onDestroy} className="destroy"></button>
 			</div>
-			<input className="edit" value="Create a TodoMVC template" />
 		</li>
   )
 }
