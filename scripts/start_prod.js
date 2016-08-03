@@ -1,3 +1,3 @@
 var server = require('pushstate-server');
 
-server.start({ port: 3000, directory: './build' });
+server.start({ port: 9000, directory: './build' });
