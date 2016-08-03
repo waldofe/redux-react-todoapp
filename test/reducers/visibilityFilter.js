@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import visibilityFilter from '../../app/reducers/visibilityFilter';
+import visibilityFilter from '../../src/reducers/visibilityFilter';
 
 describe('visibilityFilter', () => {
   describe('when unhandled action', function () {

@@ -6,7 +6,7 @@ import {
   toggleTodo,
   clearCompletedTodos,
   setVisibilityFilter
-} from '../app/actions';
+} from '../src/actions';
 
 describe('addTodo', () => {
   it('returns addTodo action', () => {

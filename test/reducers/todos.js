@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import todos from '../../app/reducers/todos';
+import todos from '../../src/reducers/todos';
 
 describe('todos', () => {
   describe('when unhandled action', function () {
