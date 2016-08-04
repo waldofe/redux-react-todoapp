@@ -1,6 +1,6 @@
 # redux-react-todoapp
 
-> https://reactodo.herokuapp.com/
+https://reactodo.herokuapp.com/
 
 React + Redux TODO app with tests. *Using react stateless components*
 
