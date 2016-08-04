@@ -1,0 +1,1 @@
+npm build && rm .gitignore && git add build && git commit -m 'deploy' && git push -f heroku master && git reset --hard HEAD~1
